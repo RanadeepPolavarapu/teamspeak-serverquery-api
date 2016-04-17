@@ -1,0 +1,30 @@
+{
+  "name": "teamspeak-serverquery-api",
+  "version": "0.0.1",
+  "description": "A TeamSpeak 3 ServerQuery API for Node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api.git"
+  },
+  "keywords": [
+    "TeamSpeak",
+    "teamspeak",
+    "serverquery",
+    "ts",
+    "ts3",
+    "api"
+  ],
+  "author": "Ranadeep Polavarapu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api/issues"
+  },
+  "homepage": "https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api#readme",
+  "dependencies": {
+    "line-input-stream": "^1.0.1"
+  }
+}
