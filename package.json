@@ -14,11 +14,15 @@
   },
   "keywords": [
     "TeamSpeak",
+    "TeamSpeak 3",
     "teamspeak",
+    "teamspeak3",
     "serverquery",
     "ts",
     "ts3",
-    "api"
+    "node-teamspeak",
+    "node-teamspeak-serverquery",
+    "node-serverquery"
   ],
   "author": "Ranadeep Polavarapu",
   "license": "MIT",
