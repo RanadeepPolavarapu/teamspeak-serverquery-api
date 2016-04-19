@@ -44,7 +44,7 @@ export default class TeamSpeakSQClient {
             self.emit('end', self.queue);
         });
 
-        self._on_connect();
+        self._onConnect();
 
         return self;
     }
@@ -67,7 +67,7 @@ export default class TeamSpeakSQClient {
                     return;
                 }
 
-                self._on_data(readerDataStr);
+                self._onData(readerDataStr);
             });
 
             self.emit('connect');
