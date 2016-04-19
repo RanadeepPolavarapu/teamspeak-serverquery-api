@@ -3,5 +3,6 @@
     "fileExtensions": [".js", ".jsx"],
     "extract": ["*.htm", "*.html"],
     "preset": "airbnb",
-    "validateIndentation": 4
+    "validateIndentation": 4,
+    "safeContextKeyword": ["self"]
 }
