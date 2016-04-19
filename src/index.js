@@ -49,14 +49,14 @@ export default class TeamSpeakSQClient {
         return self;
     }
 
-    _on_connect() {
+    _onConnect() {
         var self = this;
 
         self.socket.on('connect', () => {
             self.reader = LineInputStream(self.socket);
 
             self.reader.on('line', data => {
-                var data_str = data.trim();
+                var readerDataStr = data.trim();
 
                 if (self.status < 0) {
                     self.status++;
@@ -67,7 +67,7 @@ export default class TeamSpeakSQClient {
                     return;
                 }
 
-                self._on_data(data_str);
+                self._on_data(readerDataStr);
             });
 
             self.emit('connect');
