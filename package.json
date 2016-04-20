@@ -6,7 +6,8 @@
   "main": "lib/test.js",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "./node_modules/.bin/babel-node ./src/test.js"
+    "test": "./node_modules/.bin/babel-node ./src/main.js",
+    "start": "node ./lib/main.js"
   },
   "repository": {
     "type": "git",
