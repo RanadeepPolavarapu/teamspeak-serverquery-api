@@ -4,7 +4,7 @@ import util from 'util';
 import LineInputStream from 'line-input-stream';
 
 import {
-    TS_SERVERQUERY_COMMANDS as TS_SQ_COMMANDS
+    TS_SERVERQUERY_COMMANDS as TS3_SQ_COMMANDS
 } from './commands';
 
 const TS3_SQ_SERVER_HOST = process.env.TS3_SQ_SERVER_HOST || 'localhost';
@@ -145,6 +145,8 @@ export default class TeamSpeakSQClient {
             }
         }
 
+        console.log(toSend);
+
         self.queue.push({
             cmd: cmd,
             options: options,
@@ -187,7 +189,7 @@ export default class TeamSpeakSQClient {
     _initCmds() {
         var self = this;
 
-        TS_SQ_COMMANDS.forEach(cmd => {
+        TS3_SQ_COMMANDS.forEach(cmd => {
             self.api[cmd] = (() => {
                 var args = Array.prototype.slice.call(arguments);
 
@@ -333,19 +335,3 @@ export default class TeamSpeakSQClient {
 }
 
 util.inherits(TeamSpeakSQClient, events.EventEmitter);
-
-var tsClient = new TeamSpeakSQClient('localhost', 10011);
-
-tsClient.send('login', {
-    client_login_name: 'serveradmin',
-    client_login_password: 'test',
-}, function (err, resp, req) {
-    tsClient.send('use', {
-        sid: 1,
-    }, function (err, resp, req) {
-        tsClient.send('clientupdate', { client_nickname: 'ServerAdminBot' });
-        tsClient.send('clientlist', function (err, resp, req) {
-            console.log(resp);
-        });
-    });
-});
