@@ -33,34 +33,32 @@ export default class TeamSpeakSQClient {
         return self;
     }
 
-    escape(inputStr) {
-        let str = String(inputStr);
-        str = str.replace(/\\/g, '\\\\');   // Backslash
-        str = str.replace(/\//g, '\\/');    // Slash
-        str = str.replace(/\|/g, '\\p');    // Pipe
-        str = str.replace(/\n/g, '\\n');    // Newline
-        str = str.replace(/\r/g, '\\r');    // Carriage Return
-        str = str.replace(/\t/g, '\\t');    // Tab
-        str = str.replace(/\v/g, '\\v');    // Vertical Tab
-        str = str.replace(/\f/g, '\\f');    // Formfeed
-        str = str.replace(/ /g, '\\s');     // Whitespace
-
-        return str;
+    escape(s) {
+        var r = String(s);
+        r = r.replace(/\\/g, '\\\\');   // Backslash
+        r = r.replace(/\//g, '\\/');    // Slash
+        r = r.replace(/\|/g, '\\p');    // Pipe
+        r = r.replace(/\n/g, '\\n');    // Newline
+        r = r.replace(/\r/g, '\\r');    // Carriage Return
+        r = r.replace(/\t/g, '\\t');    // Tab
+        r = r.replace(/\v/g, '\\v');    // Vertical Tab
+        r = r.replace(/\f/g, '\\f');    // Formfeed
+        r = r.replace(/ /g,  '\\s');    // Whitespace
+        return r;
     }
 
-    unescape(inputStr) {
-        let str = String(inputStr);
-        str = str.replace(/\\s/g, ' ');     // Whitespace
-        str = str.replace(/\\p/g, '|');     // Pipe
-        str = str.replace(/\\n/g, '\n');    // Newline
-        str = str.replace(/\\f/g, '\f');    // Formfeed
-        str = str.replace(/\\r/g, '\r');    // Carriage Return
-        str = str.replace(/\\t/g, '\t');    // Tab
-        str = str.replace(/\\v/g, '\v');    // Vertical Tab
-        str = str.replace(/\\\//g, '\/');   // Forward Slash
-        str = str.replace(/\\\\/g, '\\');   // Backslash
-
-        return str;
+    unescape(s) {
+        var r = String(s);
+        r = r.replace(/\\s/g,  ' ');	// Whitespace
+        r = r.replace(/\\p/g,  '|');    // Pipe
+        r = r.replace(/\\n/g,  '\n');   // Newline
+        r = r.replace(/\\f/g,  '\f');   // Formfeed
+        r = r.replace(/\\r/g,  '\r');   // Carriage Return
+        r = r.replace(/\\t/g,  '\t');   // Tab
+        r = r.replace(/\\v/g,  '\v');   // Vertical Tab
+        r = r.replace(/\\\//g, '\/');   // Slash
+        r = r.replace(/\\\\/g, '\\');   // Backslash
+        return r;
     }
 
     connect() {
@@ -127,10 +125,10 @@ export default class TeamSpeakSQClient {
             }
         });
 
-        var toSend = escape(cmd);
+        var toSend = self.escape(cmd);
 
         options.forEach(opt => {
-            toSend += ' -' + escape(opt);
+            toSend += ' -' + self.escape(opt);
         });
 
         for (var key in params) {
@@ -138,12 +136,12 @@ export default class TeamSpeakSQClient {
 
             if (util.isArray(value)) {
                 for (var i in value) {
-                    value[i] = escape(key.toString()) + '=' + escape(value.toString());
+                    value[i] = self.escape(key.toString()) + '=' + self.escape(value.toString());
                 }
 
                 toSend += ' ' + value.join('|');
             } else {
-                toSend += ' ' + escape(key.toString()) + '=' + escape(value.toString());
+                toSend += ' ' + self.escape(key.toString()) + '=' + self.escape(value.toString());
             }
         }
 
@@ -240,8 +238,8 @@ export default class TeamSpeakSQClient {
 
             args.forEach(v => {
                 if (v.indexOf('=') > -1) {
-                    var key = unescape(v.substr(0, v.indexOf('=')));
-                    var value = unescape(v.substr(v.indexOf('=') + 1));
+                    var key = self.unescape(v.substr(0, v.indexOf('=')));
+                    var value = self.unescape(v.substr(v.indexOf('=') + 1));
 
                     if (parseInt(value, 10) == value) {
                         value = parseInt(value, 10);
