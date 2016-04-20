@@ -145,8 +145,6 @@ export default class TeamSpeakSQClient {
             }
         }
 
-        console.log(toSend);
-
         self.queue.push({
             cmd: cmd,
             options: options,

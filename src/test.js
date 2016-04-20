@@ -5,7 +5,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
 
-var config = JSON.parse(require('fs').readFileSync('config.json'));
+var config = JSON.parse(require('fs').readFileSync('tsModuleBot.dev.config.json'));
 
 //Add module-dir to the module-paths
 module.paths.push('src/modules');

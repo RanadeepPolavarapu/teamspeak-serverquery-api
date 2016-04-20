@@ -32,5 +32,8 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-# Production JSON config
-config.json
+# Production TS3 Module Bot JSON Config
+tsModuleBot.prod.config.json
+
+# Dev TS3 Module Bot JSON Config
+tsModuleBot.dev.config.json
