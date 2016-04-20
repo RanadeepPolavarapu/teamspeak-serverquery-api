@@ -33,30 +33,32 @@ export default class TeamSpeakSQClient {
         return self;
     }
 
-    escape(str) {
-        str = str.replace(/\\/g, '\\\\');
-        str = str.replace(/\//g, '\\/');
-        str = str.replace(/\|/g, '\\p');
-        str = str.replace(/\n/g, '\\n');
-        str = str.replace(/\r/g, '\\r');
-        str = str.replace(/\t/g, '\\t');
-        str = str.replace(/\v/g, '\\v');
-        str = str.replace(/\f/g, '\\f');
-        str = str.replace(/ /g, '\\s');
+    escape(inputStr) {
+        let str = String(inputStr);
+        str = str.replace(/\\/g, '\\\\');   // Backslash
+        str = str.replace(/\//g, '\\/');    // Slash
+        str = str.replace(/\|/g, '\\p');    // Pipe
+        str = str.replace(/\n/g, '\\n');    // Newline
+        str = str.replace(/\r/g, '\\r');    // Carriage Return
+        str = str.replace(/\t/g, '\\t');    // Tab
+        str = str.replace(/\v/g, '\\v');    // Vertical Tab
+        str = str.replace(/\f/g, '\\f');    // Formfeed
+        str = str.replace(/ /g, '\\s');     // Whitespace
 
         return str;
     }
 
-    unescape(str) {
-        str = str.replace(/\\s/g, ' ');
-        str = str.replace(/\\p/g, '|');
-        str = str.replace(/\\n/g, '\n');
-        str = str.replace(/\\f/g, '\f');
-        str = str.replace(/\\r/g, '\r');
-        str = str.replace(/\\t/g, '\t');
-        str = str.replace(/\\v/g, '\v');
-        str = str.replace(/\\\//g, '\/');
-        str = str.replace(/\\\\/g, '\\');
+    unescape(inputStr) {
+        let str = String(inputStr);
+        str = str.replace(/\\s/g, ' ');     // Whitespace
+        str = str.replace(/\\p/g, '|');     // Pipe
+        str = str.replace(/\\n/g, '\n');    // Newline
+        str = str.replace(/\\f/g, '\f');    // Formfeed
+        str = str.replace(/\\r/g, '\r');    // Carriage Return
+        str = str.replace(/\\t/g, '\t');    // Tab
+        str = str.replace(/\\v/g, '\v');    // Vertical Tab
+        str = str.replace(/\\\//g, '\/');   // Forward Slash
+        str = str.replace(/\\\\/g, '\\');   // Backslash
 
         return str;
     }
