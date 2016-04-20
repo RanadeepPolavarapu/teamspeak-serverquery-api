@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A TeamSpeak 3 ServerQuery API for Node.js.",
   "private": true,
-  "main": "lib/test.js",
+  "main": "lib/main.js",
   "scripts": {
     "build": "babel src -d lib",
     "test": "./node_modules/.bin/babel-node ./src/main.js",
