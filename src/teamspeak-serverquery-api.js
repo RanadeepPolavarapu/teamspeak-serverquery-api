@@ -95,14 +95,14 @@ export default class TeamSpeakSQClient {
         var self = this;
         var args = Array.prototype.slice.call(arguments);
 
-        return self.api.serverNotifyRegister.apply(self, args);
+        return self.api.servernotifyregister.apply(self, args);
     }
 
     unsubscribe() {
         var self = this;
         var args = Array.prototype.slice.call(arguments);
 
-        return self.api.serverNotifyUnregister.apply(self, args);
+        return self.api.servernotifyunregister.apply(self, args);
     }
 
     send() {
@@ -317,9 +317,15 @@ export default class TeamSpeakSQClient {
             var eventName = dataStr.substr(0, dataStr.indexOf(' '));
             var notifyResp = self.parseResp(dataStr.substr(eventName.length + 1));
 
-            self.emit('notify', eventName, notifyResp);
+            var formattedNotifyResp = {
+                status: 'ok',
+                data: notifyResp,
+                raw: dataStr,
+            };
 
-            self.emit('notify.' + eventName, eventName, notifyResp);
+            self.emit('notify', eventName, formattedNotifyResp);
+
+            self.emit('notify.' + eventName, eventName, formattedNotifyResp);
         } else if (self.executing) {
             self.executing.resp = {
                 status: 'ok',
