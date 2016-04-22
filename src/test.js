@@ -16,7 +16,7 @@ teamspeak.send('login', {
         sid: config.serverId,
     }, (err, response) => {
         teamspeak.send('clientupdate', {
-            client_nickname: config.clientName,
+            client_nickname: config.clientNamer,
         }, (err, response) => {
 
             teamspeak.send('clientlist', (err, response) => {
