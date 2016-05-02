@@ -1,8 +1,18 @@
 # teamspeak-serverquery-api
 A TeamSpeak 3 ServerQuery API.
 
+In active development. Tested and working under Node.js **v4+**.
+
+## Installation
+
+Get the project: `git clone https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api/`  
+
+Install [pm2](http://pm2.keymetrics.io/): `npm install pm2 -g`
+
+Run `start-pm2.sh` script. The `pm2` monitor will watch for any file changes and auto restart the daemon, remove `--watch` flag if not needed. Just simply do a `git pull` to update to latest version until this package is published on `npm`. 
+
 ### License
-The MIT License (MIT)  
+The MIT License (MIT)
 
 Copyright (c) 2016 RanadeepPolavarapu \<RanadeepPolavarapu@users.noreply.github.com\>
 
