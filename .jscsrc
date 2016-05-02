@@ -4,5 +4,6 @@
     "extract": ["*.htm", "*.html"],
     "preset": "airbnb",
     "validateIndentation": 4,
-    "safeContextKeyword": ["self"]
+    "safeContextKeyword": ["self"],
+    "requireImportAlphabetized": true
 }
