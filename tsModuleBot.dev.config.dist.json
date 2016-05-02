@@ -1,0 +1,15 @@
+{
+    "host": "<IPorHostname>",
+    "loginName": "serveradmin",
+    "loginPassword": "<serveradminPassword>",
+    "serverId": "<sid>",
+    "clientName": "<Bot nickname>",
+    "modules": {
+        "checkHomeChannel": {
+            "homeChannelId": 1,
+            "destinationChannelId": 2,
+            "maxSeconds": 1,
+            "pokeMessage": "<message>"
+        }
+    }
+}
