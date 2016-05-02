@@ -23,7 +23,7 @@ module.exports = (teamspeak, config) => {
                             homeChannelTimes[client.client_database_id] + 1 : 1;
                         if (homeChannelTime > maxHomeChannelTimes) {
                             teamspeak.send('sendtextmessage', {
-                                targetmode: 3,
+                                targetmode: 1,
                                 target: client.clid,
                                 msg: config.pokeMessage,
                             });
