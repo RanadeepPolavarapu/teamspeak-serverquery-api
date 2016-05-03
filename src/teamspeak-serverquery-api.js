@@ -1,11 +1,10 @@
-import net from 'net';
-import events from 'events';
-import util from 'util';
 import LineInputStream from 'line-input-stream';
-
 import {
     TS_SERVERQUERY_COMMANDS as TS3_SQ_COMMANDS
 } from './commands';
+import events from 'events';
+import net from 'net';
+import util from 'util';
 
 const TS3_SQ_SERVER_HOST = process.env.TS3_SQ_SERVER_HOST || 'localhost';
 const TS3_SQ_SERVER_PORT = process.env.TS3_SQ_SERVER_PORT || 10011;
