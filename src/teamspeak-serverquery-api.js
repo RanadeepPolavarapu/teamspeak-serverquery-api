@@ -33,7 +33,7 @@ export default class TeamSpeakSQClient {
     }
 
     tsEscapeString(s) {
-        var r = String(s);
+        let r = String(s);
         r = r.replace(/\\/g, '\\\\'); // Backslash
         r = r.replace(/\//g, '\\/'); // Slash
         r = r.replace(/\|/g, '\\p'); // Pipe
@@ -47,7 +47,7 @@ export default class TeamSpeakSQClient {
     }
 
     tsUnescapeString(s) {
-        var r = String(s);
+        let r = String(s);
         r = r.replace(/\\s/g, ' '); // Whitespace
         r = r.replace(/\\p/g, '|'); // Pipe
         r = r.replace(/\\n/g, '\n'); // Newline
@@ -315,10 +315,10 @@ export default class TeamSpeakSQClient {
         } else if (dataStr.indexOf('notify') === 0) {
             dataStr = dataStr.substr(6);
 
-            var eventName = dataStr.substr(0, dataStr.indexOf(' '));
-            var notifyResp = self.parseResp(dataStr.substr(eventName.length + 1));
+            let eventName = dataStr.substr(0, dataStr.indexOf(' '));
+            let notifyResp = self.parseResp(dataStr.substr(eventName.length + 1));
 
-            var formattedNotifyResp = {
+            let formattedNotifyResp = {
                 status: 'ok',
                 data: notifyResp,
                 raw: dataStr,
