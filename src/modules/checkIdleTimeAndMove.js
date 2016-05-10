@@ -6,7 +6,6 @@ module.exports = (teamspeak, config) => {
 
             if (!response) {
                 response = [];
-                console.log('hit');
             } else if (!Array.isArray(response)) {
                 response = response.data;
             }
