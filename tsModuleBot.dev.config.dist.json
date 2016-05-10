@@ -10,6 +10,11 @@
             "destinationChannelId": 2,
             "maxSeconds": 1,
             "pokeMessage": "<message>"
+        },
+        "checkIdleTimeAndMove": {
+            "maxIdleTimeInSeconds": 600,
+            "destinationChannelId": 193,
+            "idleTextMessageBody": "<message>"
         }
     }
 }

@@ -2,7 +2,10 @@ module.exports = (teamspeak, config) => {
     var homeChannelTimes = {};
     var maxHomeChannelTimes = config.maxSeconds / 2;
     (function checkHomeChannel() {
-        teamspeak.send('clientlist', (err, response) => {
+        teamspeak.send('clientlist', {
+            '-times': true,
+            '-away': true,
+        }, (err, response) => {
             if (!response) {
                 response = [];
                 console.log('hit');
