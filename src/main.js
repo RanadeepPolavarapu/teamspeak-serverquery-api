@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
 
