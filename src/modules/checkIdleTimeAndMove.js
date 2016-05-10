@@ -1,14 +1,7 @@
 module.exports = (teamspeak, config) => {
     (function checkIdleTimeAndMove() {
         teamspeak.send('clientlist', {
-            '-uid': true,
-            '-away': true,
-            '-voice': true,
             '-times': true,
-            '-groups': true,
-            '-info': true,
-            '-icon': true,
-            '-country': true,
         }, (err, response) => {
 
             if (!response) {
