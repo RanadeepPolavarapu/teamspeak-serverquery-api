@@ -1,9 +1,13 @@
 # teamspeak-serverquery-api
 A TeamSpeak 3 ServerQuery API.
 
-In active development. Tested and working under Node.js **v4+**.
+**VERSION**: 1.0.0
+
+Versioning adheres to [Semantic Versioning](http://semver.org) standard. Tested and working under Node.js **v4+**.  
 
 ## Installation
+
+This project will not be published to `npm`.
 
 Get the project: `git clone https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api/`  
 
