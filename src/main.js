@@ -7,7 +7,7 @@ var config = JSON.parse(require('fs').readFileSync('tsModuleBot.dev.config.json'
 //Add module-dir to the module-paths
 module.paths.push('src/modules');
 
-(function ts3ModuleBot() {
+(function ts3ModuleBotInit() {
     var teamspeak = new TeamSpeakSQClient(config.host);
     teamspeak.send('login', {
         client_login_name: config.loginName,
@@ -23,7 +23,7 @@ module.paths.push('src/modules');
                     event: 'textprivate',
                 });
 
-                //Execute modules
+                // Execute all modules.
                 for (module in config.modules) {
                     require(module)(teamspeak, config.modules[module]);
                 }
@@ -33,11 +33,11 @@ module.paths.push('src/modules');
 
     teamspeak.on('error', () => {});
 
-    //so send them to the blackhole
+    // Purge in-memory data upon remote server failure or disconnect.
     teamspeak.on('close', () => {
-        //Try to reconnect/restart after 3 seconds
+        // Attempt auto reconnect at 3 second intervals.
         setTimeout(() => {
-            ts3ModuleBot();
+            ts3ModuleBotInit();
         }, 3000);
     });
 })();

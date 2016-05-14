@@ -1,3 +1,5 @@
+import ModuleUtils from '../util/moduleUtils';
+
 module.exports = (teamspeak, config) => {
     if (!config.moduleEnabled) {
         return;
@@ -6,8 +8,8 @@ module.exports = (teamspeak, config) => {
     (function checkIdleTimeAndMove() {
         teamspeak.send('clientlist', {
             '-times': true,
+            '-groups': true,
         }, (err, response) => {
-
             if (!response) {
                 response = [];
             } else if (!Array.isArray(response)) {
@@ -18,7 +20,13 @@ module.exports = (teamspeak, config) => {
                 var client = response[i];
                 if (client.client_type === 0) {
                     var clientIdleTime = client.client_idle_time / 1000;
+
+                    var clientServerGroupsArray = client.client_servergroups
+                        .toString().split(',').map(n => Number(n));
+
                     if (
+                        (!ModuleUtils.arrayHasIntersects(clientServerGroupsArray,
+                            config.ignoreServerGroupIds)) &&
                         (client.cid != config.destinationChannelId) &&
                         (clientIdleTime > config.maxIdleTimeInSeconds)
                     ) {

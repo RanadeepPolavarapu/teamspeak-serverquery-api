@@ -10,13 +10,15 @@
             "homeChannelId": 1,
             "destinationChannelId": 2,
             "maxSeconds": 1,
-            "pokeMessage": "<message>"
+            "pokeMessage": "<message>",
+            "ignoreServerGroupIds": [2]
         },
         "checkIdleTimeAndMove": {
             "moduleEnabled": true,
             "maxIdleTimeInSeconds": 600,
             "destinationChannelId": 193,
-            "idleTextMessageBody": "<message>"
+            "idleTextMessageBody": "<message>",
+            "ignoreServerGroupIds": [2]
         }
     }
 }

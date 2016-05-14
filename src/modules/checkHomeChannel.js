@@ -1,3 +1,5 @@
+import ModuleUtils from '../util/moduleUtils';
+
 module.exports = (teamspeak, config) => {
     if (!config.moduleEnabled) {
         return;
@@ -7,8 +9,9 @@ module.exports = (teamspeak, config) => {
     var maxHomeChannelTimes = config.maxSeconds / 2;
     (function checkHomeChannel() {
         teamspeak.send('clientlist', {
-            '-times': true,
             '-away': true,
+            '-times': true,
+            '-groups': true,
         }, (err, response) => {
             if (!response) {
                 response = [];
@@ -20,7 +23,15 @@ module.exports = (teamspeak, config) => {
             for (let i in response) {
                 var client = response[i];
                 if (client.client_type === 0) {
-                    if (client.cid === config.homeChannelId) {
+
+                    var clientServerGroupsArray = client.client_servergroups
+                        .toString().split(',').map(n => Number(n));
+
+                    if (
+                        (!ModuleUtils.arrayHasIntersects(clientServerGroupsArray,
+                            config.ignoreServerGroupIds)) &&
+                        (client.cid === config.homeChannelId)
+                    ) {
                         var homeChannelTime = homeChannelTimes[client.client_database_id] ?
                             homeChannelTimes[client.client_database_id] + 1 : 1;
                         if (homeChannelTime > maxHomeChannelTimes) {
