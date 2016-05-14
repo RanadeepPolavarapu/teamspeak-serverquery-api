@@ -1,5 +1,5 @@
 # teamspeak-serverquery-api
-A TeamSpeak 3 ServerQuery API.
+A TeamSpeak 3 [ServerQuery](http://media.teamspeak.com/ts3_literature/TeamSpeak%203%20Server%20Query%20Manual.pdf) API and module based bot.
 
 **VERSION**: [1.0.0](https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api/releases/latest)
 
