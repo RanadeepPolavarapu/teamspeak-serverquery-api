@@ -6,12 +6,14 @@
     "clientName": "<Bot nickname>",
     "modules": {
         "checkHomeChannel": {
+            "moduleEnabled": true,
             "homeChannelId": 1,
             "destinationChannelId": 2,
             "maxSeconds": 1,
             "pokeMessage": "<message>"
         },
         "checkIdleTimeAndMove": {
+            "moduleEnabled": true,
             "maxIdleTimeInSeconds": 600,
             "destinationChannelId": 193,
             "idleTextMessageBody": "<message>"

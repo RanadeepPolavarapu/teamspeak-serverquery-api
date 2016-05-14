@@ -1,4 +1,8 @@
 module.exports = (teamspeak, config) => {
+    if (!config.moduleEnabled) {
+        return;
+    }
+
     var homeChannelTimes = {};
     var maxHomeChannelTimes = config.maxSeconds / 2;
     (function checkHomeChannel() {
