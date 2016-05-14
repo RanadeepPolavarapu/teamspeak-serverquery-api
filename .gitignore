@@ -34,6 +34,3 @@ node_modules
 
 # Production TS3 Module Bot JSON Config
 tsModuleBot.config.json
-
-# Ignore build folder
-build/
