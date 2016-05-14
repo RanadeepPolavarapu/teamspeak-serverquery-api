@@ -42,6 +42,6 @@
     "babel-preset-node5": "^11.0.1"
   },
   "engines": {
-    "node": "5.10.0"
+    "node": "6.0.0"
   }
 }
