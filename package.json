@@ -1,14 +1,14 @@
 {
   "name": "teamspeak-serverquery-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A TeamSpeak 3 ServerQuery API for Node.js.",
   "private": true,
-  "main": "lib/main.js",
+  "main": "build/main.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "./node_modules/.bin/babel src -d build",
     "test1": "./node_modules/.bin/babel-node ./src/test.js",
     "test": "./node_modules/.bin/babel-node ./src/main.js",
-    "start": "npm run build && node ./lib/main.js"
+    "start": "npm run build && node ./build/main.js"
   },
   "repository": {
     "type": "git",
