@@ -1,6 +1,6 @@
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
 
-var config = JSON.parse(require('fs').readFileSync('tsModuleBot.dev.config.json'));
+var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
 
 var teamspeak = new TeamSpeakSQClient(config.host);
 

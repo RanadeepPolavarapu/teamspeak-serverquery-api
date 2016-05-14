@@ -2,7 +2,7 @@
 
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
 
-var config = JSON.parse(require('fs').readFileSync('tsModuleBot.dev.config.json'));
+var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
 
 //Add module-dir to the module-paths
 module.paths.push('src/modules');
