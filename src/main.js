@@ -4,9 +4,6 @@ import TeamSpeakSQClient from './teamspeak-serverquery-api';
 
 var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
 
-//Add module-dir to the module-paths
-module.paths.push('src/modules');
-
 (function ts3ModuleBotInit() {
     var teamspeak = new TeamSpeakSQClient(config.host);
     teamspeak.send('login', {
@@ -25,7 +22,7 @@ module.paths.push('src/modules');
 
                 // Execute all modules.
                 for (module in config.modules) {
-                    require(module)(teamspeak, config.modules[module]);
+                    require('./modules/' + module)(teamspeak, config.modules[module]);
                 }
             });
         });
