@@ -28,7 +28,7 @@ Run `start-pm2.sh` script. The `pm2` monitor will watch for any file changes and
 
 Custom modules can be written by simply writing a `.js` file in the [modules folder](/src/modules). The config specific to this module is added under the `modules` key in [config JSON file](/tsModuleBot.config.dist.json)
 
-### License
+## License
 The MIT License (MIT)
 
 Copyright (c) 2016 RanadeepPolavarapu \<RanadeepPolavarapu@users.noreply.github.com\>
