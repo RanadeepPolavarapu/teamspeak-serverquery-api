@@ -15,6 +15,19 @@ Install [pm2](http://pm2.keymetrics.io/): `npm install pm2 -g`
 
 Run `start-pm2.sh` script. The `pm2` monitor will watch for any file changes and auto restart the daemon, remove `--watch` flag if not needed. See releases to find the latest release. You can do a `git pull` from master branch if you wish to use active development versions.
 
+## Modules
+
+### Default Modules
+
+| Module        | Description           | Source  |
+| ------------- |:-------------:| -----:|
+| Check Home (Default) Channel      | Auto moves the user from the default channel after a specified *n* seconds. | [checkHomeChannel.js](/src/modules/checkHomeChannel.js) |
+| Idle Time Checker      | Auto moves the user to a specified channel by *cid* after being idle for a specified *n* seconds.      |   [checkIdleTimeAndMove.js](/src/modules/checkIdleTimeAndMove.js) |
+
+### Custom Modules
+
+Custom modules can be written by simply writing a `.js` file in the [modules folder](/src/modules). The config specific to this module is added under the `modules` key in [config JSON file](/tsModuleBot.config.dist.json)
+
 ### License
 The MIT License (MIT)
 
