@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
+import fs from 'fs';
 
-var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
+const config = JSON.parse(fs.readFileSync('tsModuleBot.config.json'));
 
 (function ts3ModuleBotInit() {
-    var teamspeak = new TeamSpeakSQClient(config.host);
+    const teamspeak = new TeamSpeakSQClient(config.host);
     teamspeak.send('login', {
         client_login_name: config.loginName,
         client_login_password: config.loginPassword,

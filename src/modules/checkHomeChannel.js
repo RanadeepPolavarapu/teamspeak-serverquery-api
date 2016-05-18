@@ -5,8 +5,8 @@ module.exports = (teamspeak, config) => {
         return;
     }
 
-    var homeChannelTimes = {};
-    var maxHomeChannelTimes = config.maxSeconds / 2;
+    let homeChannelTimes = {};
+    const maxHomeChannelTimes = config.maxSeconds / 2;
     (function checkHomeChannel() {
         teamspeak.send('clientlist', {
             '-away': true,
@@ -19,12 +19,12 @@ module.exports = (teamspeak, config) => {
                 response = response.data;
             }
 
-            var newHomeChannelTimes = {};
+            const newHomeChannelTimes = {};
             for (let i in response) {
-                var client = response[i];
+                const client = response[i];
                 if (client.client_type === 0) {
 
-                    var clientServerGroupsArray = client.client_servergroups
+                    const clientServerGroupsArray = client.client_servergroups
                         .toString().split(',').map(n => Number(n));
 
                     if (
@@ -32,7 +32,7 @@ module.exports = (teamspeak, config) => {
                             config.ignoreServerGroupIds)) &&
                         (client.cid === config.homeChannelId)
                     ) {
-                        var homeChannelTime = homeChannelTimes[client.client_database_id] ?
+                        const homeChannelTime = homeChannelTimes[client.client_database_id] ?
                             homeChannelTimes[client.client_database_id] + 1 : 1;
                         if (homeChannelTime > maxHomeChannelTimes) {
                             teamspeak.send('sendtextmessage', {

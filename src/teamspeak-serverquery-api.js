@@ -61,7 +61,7 @@ export default class TeamSpeakSQClient {
     }
 
     connect() {
-        var self = this;
+        const self = this;
 
         self.socket = net.connect(self.port, self.host);
 
@@ -83,7 +83,7 @@ export default class TeamSpeakSQClient {
     }
 
     disconnect() {
-        var self = this;
+        const self = this;
 
         self.socket.end();
 
@@ -91,26 +91,26 @@ export default class TeamSpeakSQClient {
     }
 
     subscribe() {
-        var self = this;
-        var args = Array.prototype.slice.call(arguments);
+        const self = this;
+        const args = Array.prototype.slice.call(arguments);
 
         return self.api.servernotifyregister.apply(self, args);
     }
 
     unsubscribe() {
-        var self = this;
-        var args = Array.prototype.slice.call(arguments);
+        const self = this;
+        const args = Array.prototype.slice.call(arguments);
 
         return self.api.servernotifyunregister.apply(self, args);
     }
 
     send() {
-        var self = this;
-        var args = Array.prototype.slice.call(arguments);
-        var options = [];
-        var params = {};
-        var callback = undefined;
-        var cmd = args.shift();
+        const self = this;
+        const args = Array.prototype.slice.call(arguments);
+        let options = [];
+        let params = {};
+        let callback = undefined;
+        const cmd = args.shift();
 
         args.forEach(argValue => {
             if (util.isArray(argValue)) {
@@ -124,31 +124,31 @@ export default class TeamSpeakSQClient {
             }
         });
 
-        var toSend = self.tsEscapeString(cmd);
+        let toSend = self.tsEscapeString(cmd);
 
         options.forEach(opt => {
-            toSend += ' -' + self.tsEscapeString(opt);
+            toSend += ` -${self.tsEscapeString(opt)}`;
         });
 
-        for (var key in params) {
-            var value = params[key];
+        for (let key in params) {
+            const value = params[key];
 
             if (util.isArray(value)) {
-                for (var i in value) {
+                for (let i in value) {
                     value[i] = self.tsEscapeString(key.toString()) + '=' +
                         self.tsEscapeString(value.toString());
                 }
 
-                toSend += ' ' + value.join('|');
+                toSend += ` ${value.join('|')}`;
             } else {
-                toSend += ' ' + self.tsEscapeString(key.toString()) + '=' +
+                toSend += ` ${self.tsEscapeString(key.toString())}=` +
                     self.tsEscapeString(value.toString());
             }
         }
 
         self.queue.push({
-            cmd: cmd,
-            options: options,
+            cmd,
+            options,
             parameters: params,
             text: toSend,
             cb: callback,
@@ -162,7 +162,7 @@ export default class TeamSpeakSQClient {
     }
 
     advanceQueue() {
-        var self = this;
+        const self = this;
 
         if (!self.executing && self.queue.length >= 1) {
             self.executing = self.queue.shift();
@@ -177,8 +177,8 @@ export default class TeamSpeakSQClient {
     }
 
     clearPending() {
-        var self = this;
-        var queue = self.queue;
+        const self = this;
+        const { queue } = self;
 
         self.queue = [];
 
@@ -186,11 +186,11 @@ export default class TeamSpeakSQClient {
     }
 
     _initCmds() {
-        var self = this;
+        const self = this;
 
         TS3_SQ_COMMANDS.forEach(cmd => {
             self.api[cmd] = (() => {
-                var args = Array.prototype.slice.call(arguments);
+                const args = Array.prototype.slice.call(arguments);
 
                 args.unshift(cmd);
 
@@ -202,13 +202,13 @@ export default class TeamSpeakSQClient {
     }
 
     _onConnect() {
-        var self = this;
+        const self = this;
 
         self.socket.on('connect', () => {
             self.reader = LineInputStream(self.socket);
 
             self.reader.on('line', data => {
-                var readerDataStr = data.trim();
+                const readerDataStr = data.trim();
 
                 if (self.status < 0) {
                     self.status++;
@@ -229,18 +229,18 @@ export default class TeamSpeakSQClient {
     }
 
     parseResp(str) {
-        var self = this;
-        var resp = [];
-        var records = str.split('|');
+        const self = this;
+        let resp = [];
+        const records = str.split('|');
 
         resp = records.map(k => {
-            var args = k.split(' ');
-            var obj = {};
+            const args = k.split(' ');
+            const obj = {};
 
             args.forEach(v => {
                 if (v.indexOf('=') > -1) {
-                    var key = self.tsUnescapeString(v.substr(0, v.indexOf('=')));
-                    var value = self.tsUnescapeString(v.substr(v.indexOf('=') + 1));
+                    const key = self.tsUnescapeString(v.substr(0, v.indexOf('=')));
+                    let value = self.tsUnescapeString(v.substr(v.indexOf('=') + 1));
 
                     if (parseInt(value, 10) == value) {
                         value = parseInt(value, 10);
@@ -266,10 +266,10 @@ export default class TeamSpeakSQClient {
     }
 
     _onData(dataStr) {
-        var self = this;
+        const self = this;
 
         if (dataStr.indexOf('error') === 0) {
-            var resp = self.parseResp(dataStr.substr(6).trim());
+            const resp = self.parseResp(dataStr.substr(6).trim());
 
             if (resp.id === 0) {
                 self.executing.error = null;
@@ -287,7 +287,7 @@ export default class TeamSpeakSQClient {
                 };
             }
 
-            var req = {
+            const req = {
                 cmd: self.executing.cmd,
                 options: self.executing.options,
                 params: self.executing.parameters,
@@ -326,7 +326,7 @@ export default class TeamSpeakSQClient {
 
             self.emit('notify', eventName, formattedNotifyResp);
 
-            self.emit('notify.' + eventName, eventName, formattedNotifyResp);
+            self.emit(`notify.${eventName}`, eventName, formattedNotifyResp);
         } else if (self.executing) {
             self.executing.resp = {
                 status: 'ok',

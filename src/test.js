@@ -1,20 +1,21 @@
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
+import fs from 'fs';
 
-var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
+const config = JSON.parse(fs.readFileSync('tsModuleBot.config.json'));
 
-var teamspeak = new TeamSpeakSQClient(config.host);
+const teamspeak = new TeamSpeakSQClient(config.host);
 
 function parseCommands(s) {
-    var formattedCmd = s.slice(1).split(' ')[0];
-    var formattedParams = {};
+    const formattedCmd = s.slice(1).split(' ')[0];
+    const formattedParams = {};
 
     // Split the first occurrence of whitespace to fetch params substring.
     let paramsRawString = s.substr(s.indexOf(' ') + 1);
 
     // Split via regex (group1 and group2 around the equal sign).
-    var re = /(\w+)=(.+?)(?= \w+=|$)/gm;
-    var m;
-    var resultParamsArray = [];
+    const re = /(\w+)=(.+?)(?= \w+=|$)/gm;
+    let m;
+    const resultParamsArray = [];
     while ((m = re.exec(paramsRawString)) !== null) {
         if (m.index === re.lastIndex)
             re.lastIndex++;

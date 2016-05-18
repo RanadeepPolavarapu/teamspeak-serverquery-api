@@ -17,11 +17,11 @@ module.exports = (teamspeak, config) => {
             }
 
             for (let i in response) {
-                var client = response[i];
+                const client = response[i];
                 if (client.client_type === 0) {
-                    var clientIdleTime = client.client_idle_time / 1000;
+                    const clientIdleTime = client.client_idle_time / 1000;
 
-                    var clientServerGroupsArray = client.client_servergroups
+                    const clientServerGroupsArray = client.client_servergroups
                         .toString().split(',').map(n => Number(n));
 
                     if (
@@ -30,7 +30,7 @@ module.exports = (teamspeak, config) => {
                         (client.cid != config.destinationChannelId) &&
                         (clientIdleTime > config.maxIdleTimeInSeconds)
                     ) {
-                        var formattedIdleTextMessageBody = config.idleTextMessageBody.replace(
+                        const formattedIdleTextMessageBody = config.idleTextMessageBody.replace(
                             '${IDLE_TIME_IN_SECONDS}', config.maxIdleTimeInSeconds
                         );
                         teamspeak.send('sendtextmessage', {
