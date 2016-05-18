@@ -4,9 +4,13 @@ var _teamspeakServerqueryApi = require('./teamspeak-serverquery-api');
 
 var _teamspeakServerqueryApi2 = _interopRequireDefault(_teamspeakServerqueryApi);
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
+var config = JSON.parse(_fs2.default.readFileSync('tsModuleBot.config.json'));
 
 var teamspeak = new _teamspeakServerqueryApi2.default(config.host);
 
@@ -19,7 +23,7 @@ function parseCommands(s) {
 
     // Split via regex (group1 and group2 around the equal sign).
     var re = /(\w+)=(.+?)(?= \w+=|$)/gm;
-    var m;
+    var m = void 0;
     var resultParamsArray = [];
     while ((m = re.exec(paramsRawString)) !== null) {
         if (m.index === re.lastIndex) re.lastIndex++;

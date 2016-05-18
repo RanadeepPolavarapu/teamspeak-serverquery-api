@@ -5,9 +5,13 @@ var _teamspeakServerqueryApi = require('./teamspeak-serverquery-api');
 
 var _teamspeakServerqueryApi2 = _interopRequireDefault(_teamspeakServerqueryApi);
 
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var config = JSON.parse(require('fs').readFileSync('tsModuleBot.config.json'));
+var config = JSON.parse(_fs2.default.readFileSync('tsModuleBot.config.json'));
 
 (function ts3ModuleBotInit() {
     var teamspeak = new _teamspeakServerqueryApi2.default(config.host);

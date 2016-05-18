@@ -213,6 +213,7 @@ var TeamSpeakSQClient = function () {
             var self = this;
             var queue = self.queue;
 
+
             self.queue = [];
 
             return queue;
