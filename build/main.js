@@ -19,6 +19,8 @@ var config = JSON.parse(_fs2.default.readFileSync('tsModuleBot.config.json'));
         client_login_name: config.loginName,
         client_login_password: config.loginPassword
     }, function (err, response) {
+        console.error(err);
+
         teamspeak.send('use', {
             sid: config.serverId
         }, function (err, response) {

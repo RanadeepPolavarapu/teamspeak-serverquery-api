@@ -19,6 +19,13 @@
             "destinationChannelId": 193,
             "idleTextMessageBody": "<message>",
             "ignoreServerGroupIds": [2]
+        },
+        "advertiser": {
+            "moduleEnabled": true,
+            "targetMode": 3,
+            "targetId": 1,
+            "message": "",
+            "messageIntervalInSeconds": 5
         }
     }
 }

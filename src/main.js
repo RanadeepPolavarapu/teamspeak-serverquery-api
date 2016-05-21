@@ -11,6 +11,8 @@ const config = JSON.parse(fs.readFileSync('tsModuleBot.config.json'));
         client_login_name: config.loginName,
         client_login_password: config.loginPassword,
     }, (err, response) => {
+        console.error(err);
+
         teamspeak.send('use', {
             sid: config.serverId,
         }, (err, response) => {
