@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
+var _hjson = require('hjson');
+
+var HJSON = _interopRequireWildcard(_hjson);
+
 var _teamspeakServerqueryApi = require('./teamspeak-serverquery-api');
 
 var _teamspeakServerqueryApi2 = _interopRequireDefault(_teamspeakServerqueryApi);
@@ -11,7 +15,9 @@ var _fs2 = _interopRequireDefault(_fs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var config = JSON.parse(_fs2.default.readFileSync('tsModuleBot.config.json'));
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var config = HJSON.parse(_fs2.default.readFileSync('tsModuleBot.config.json', 'utf8'));
 
 (function ts3ModuleBotInit() {
     var teamspeak = new _teamspeakServerqueryApi2.default(config.host);
