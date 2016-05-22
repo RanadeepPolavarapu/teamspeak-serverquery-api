@@ -33,9 +33,14 @@ module.exports = (teamspeak, config) => {
                         const formattedIdleTextMessageBody = config.idleTextMessageBody.replace(
                             '${IDLE_TIME_IN_SECONDS}', config.maxIdleTimeInSeconds
                         );
+
+                        (config.messageMode === 'textmessage') ?
                         teamspeak.send('sendtextmessage', {
                             targetmode: 1,
                             target: client.clid,
+                            msg: formattedIdleTextMessageBody,
+                        }) : teamspeak.send('clientpoke', {
+                            clid: client.clid,
                             msg: formattedIdleTextMessageBody,
                         });
 
@@ -43,7 +48,6 @@ module.exports = (teamspeak, config) => {
                             clid: client.clid,
                             cid: config.destinationChannelId,
                         });
-
                     }
                 }
             }
