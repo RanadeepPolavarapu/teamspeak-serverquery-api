@@ -22,7 +22,8 @@ Run `start-pm2.sh` script. The `pm2` monitor will watch for any file changes and
 | Module        | Description           | Source  | Config |
 | ------------- |-------------|-----|-----|
 | Check Home (Default) Channel      | Auto moves the user from the default channel after a specified *n* seconds. | [checkHomeChannel.js](/src/modules/checkHomeChannel.js) | [Config lines 8-15](/tsModuleBot.config.dist.json#L8-15) |
-| Idle Time Checker      | Auto moves the user to a specified channel by *cid* after being idle for a specified *n* seconds.      |   [checkIdleTimeAndMove.js](/src/modules/checkIdleTimeAndMove.js) | [Config lines 16-22](/tsModuleBot.config.dist.json#L16-22) |
+| Idle Time Checker      | Auto moves the user to a specified channel by *cid* after being idle for a specified *n* seconds.      |   [checkIdleTimeAndMove.js](/src/modules/checkIdleTimeAndMove.js) | [Config lines 16-22](/tsModuleBot.config.dist.json#L17-23) |
+| Advertiser      | Sends a message every *n* seconds to a server or channel based on their IDs.      |   [checkIdleTimeAndMove.js](/src/modules/advertiser.js) | [Config lines 16-22](/tsModuleBot.config.dist.json#L25-30) |
 
 ### Custom Modules
 
