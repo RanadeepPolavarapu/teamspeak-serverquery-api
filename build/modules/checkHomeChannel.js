@@ -37,11 +37,16 @@ module.exports = function (teamspeak, config) {
                     if (!_moduleUtils2.default.arrayHasIntersects(clientServerGroupsArray, config.ignoreServerGroupIds) && client.cid === config.homeChannelId) {
                         var homeChannelTime = homeChannelTimes[client.client_database_id] ? homeChannelTimes[client.client_database_id] + 1 : 1;
                         if (homeChannelTime > maxHomeChannelTimes) {
-                            teamspeak.send('sendtextmessage', {
+
+                            config.messageMode === 'textmessage' ? teamspeak.send('sendtextmessage', {
                                 targetmode: 1,
                                 target: client.clid,
-                                msg: config.pokeMessage
+                                msg: config.message
+                            }) : teamspeak.send('clientpoke', {
+                                clid: client.clid,
+                                msg: config.message
                             });
+
                             teamspeak.send('clientmove', {
                                 clid: client.clid,
                                 cid: config.destinationChannelId

@@ -33,9 +33,13 @@ module.exports = function (teamspeak, config) {
 
                     if (!_moduleUtils2.default.arrayHasIntersects(clientServerGroupsArray, config.ignoreServerGroupIds) && client.cid != config.destinationChannelId && clientIdleTime > config.maxIdleTimeInSeconds) {
                         var formattedIdleTextMessageBody = config.idleTextMessageBody.replace('${IDLE_TIME_IN_SECONDS}', config.maxIdleTimeInSeconds);
-                        teamspeak.send('sendtextmessage', {
+
+                        config.messageMode === 'textmessage' ? teamspeak.send('sendtextmessage', {
                             targetmode: 1,
                             target: client.clid,
+                            msg: formattedIdleTextMessageBody
+                        }) : teamspeak.send('clientpoke', {
+                            clid: client.clid,
                             msg: formattedIdleTextMessageBody
                         });
 
