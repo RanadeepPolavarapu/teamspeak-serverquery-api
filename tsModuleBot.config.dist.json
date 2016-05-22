@@ -1,16 +1,16 @@
 {
-    "host": "<IPorHostname>",
-    "loginName": "serveradmin",
-    "loginPassword": "<serveradminPassword>",
-    "serverId": "<sid>",
-    "clientName": "<Bot nickname>",
+    "host": "<IPorHostname>", # The TeamSpeak host.
+    "loginName": "serveradmin", # The TeamSpeak serverquery login.
+    "loginPassword": "<serveradminPassword>", # TeamSpeak serverquery password.
+    "serverId": "<sid>", # Server Id
+    "clientName": "<Bot nickname>", # Nickname
     "modules": {
-        "checkHomeChannel": {
+        "checkHomeChannel": { # CheckHomeChannel.js module
             "moduleEnabled": true,
             "homeChannelId": 1,
             "destinationChannelId": 2,
             "maxSeconds": 1,
-            "messageMode": "textmessage",
+            "messageMode": "textmessage", # Valid messageModes are "textmessage" and "clientpoke".
             "pokeMessage": "<message>",
             "ignoreServerGroupIds": [2]
         },
@@ -18,7 +18,7 @@
             "moduleEnabled": true,
             "maxIdleTimeInSeconds": 600,
             "destinationChannelId": 193,
-            "messageMode": "textmessage",
+            "messageMode": "textmessage", # Valid messageModes are "textmessage" and "clientpoke".
             "idleTextMessageBody": "<message>",
             "ignoreServerGroupIds": [2]
         },

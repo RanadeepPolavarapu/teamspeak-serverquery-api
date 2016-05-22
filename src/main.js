@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+import * as HJSON from 'hjson';
 import TeamSpeakSQClient from './teamspeak-serverquery-api';
 import fs from 'fs';
 
-const config = JSON.parse(fs.readFileSync('tsModuleBot.config.json'));
+const config = HJSON.parse(fs.readFileSync('tsModuleBot.config.json', 'utf8'));
 
 (function ts3ModuleBotInit() {
     const teamspeak = new TeamSpeakSQClient(config.host);

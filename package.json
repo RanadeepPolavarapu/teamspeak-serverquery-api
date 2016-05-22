@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/RanadeepPolavarapu/teamspeak-serverquery-api#readme",
   "dependencies": {
+    "hjson": "^1.8.4",
     "line-input-stream": "^1.0.1"
   },
   "devDependencies": {
