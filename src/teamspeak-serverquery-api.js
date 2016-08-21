@@ -1,6 +1,6 @@
 import LineInputStream from 'line-input-stream';
 import {
-    TS_SERVERQUERY_COMMANDS as TS3_SQ_COMMANDS
+  TS_SERVERQUERY_COMMANDS as TS3_SQ_COMMANDS,
 } from './commands';
 import events from 'events';
 import net from 'net';
@@ -136,13 +136,13 @@ export default class TeamSpeakSQClient {
             if (util.isArray(value)) {
                 for (let i in value) {
                     value[i] = self.tsEscapeString(key.toString()) + '=' +
-                        self.tsEscapeString(value.toString());
+            self.tsEscapeString(value.toString());
                 }
 
                 toSend += ` ${value.join('|')}`;
             } else {
                 toSend += ` ${self.tsEscapeString(key.toString())}=` +
-                    self.tsEscapeString(value.toString());
+          self.tsEscapeString(value.toString());
             }
         }
 
@@ -178,7 +178,9 @@ export default class TeamSpeakSQClient {
 
     clearPending() {
         const self = this;
-        const { queue } = self;
+        const {
+      queue,
+    } = self;
 
         self.queue = [];
 
@@ -296,18 +298,18 @@ export default class TeamSpeakSQClient {
 
             if (typeof self.executing.cb == 'function') {
                 self.executing.cb.call(
-                    self.executing,
-                    self.executing.error,
-                    self.executing.resp,
-                    req
-                );
+          self.executing,
+          self.executing.error,
+          self.executing.resp,
+          req
+        );
             } else {
                 self.emit(
-                    self.executing.cmd,
-                    self.executing.error,
-                    self.executing.resp,
-                    req
-                );
+          self.executing.cmd,
+          self.executing.error,
+          self.executing.resp,
+          req
+        );
             }
 
             self.executing = null;

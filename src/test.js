@@ -40,7 +40,7 @@ function parseCommands(s) {
     //     }
     // }
 
-    return [formattedCmd, formattedParams];
+    return [ formattedCmd, formattedParams ];
 }
 
 teamspeak.on('notify', (eventName, response) => {

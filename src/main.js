@@ -38,6 +38,7 @@ const config = HJSON.parse(fs.readFileSync('tsModuleBot.config.json', 'utf8'));
 
     // Purge in-memory data upon remote server failure or disconnect.
     teamspeak.on('close', () => {
+
         // Attempt auto reconnect at 3 second intervals.
         setTimeout(() => {
             ts3ModuleBotInit();
