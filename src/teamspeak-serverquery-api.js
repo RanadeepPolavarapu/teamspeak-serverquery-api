@@ -297,19 +297,9 @@ export default class TeamSpeakSQClient {
             };
 
             if (typeof self.executing.cb == 'function') {
-                self.executing.cb.call(
-          self.executing,
-          self.executing.error,
-          self.executing.resp,
-          req
-        );
+                self.executing.cb.call(self.executing, self.executing.error, self.executing.resp, req);
             } else {
-                self.emit(
-          self.executing.cmd,
-          self.executing.error,
-          self.executing.resp,
-          req
-        );
+                self.emit(self.executing.cmd, self.executing.error, self.executing.resp, req);
             }
 
             self.executing = null;
